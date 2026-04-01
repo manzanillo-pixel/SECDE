@@ -300,9 +300,9 @@ body {
 
 /* TEXTO */
 .accordion-body p {
-  line-height: 1.6;
+  color: #000;
   font-size: 14px;
-  color: #f8f6f600;
+  line-height: 1.6;
 }
 
 /* SCROLL SUAVE */
