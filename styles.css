@@ -461,3 +461,466 @@ html {
 .page {
   padding: 10px 20px;
 }
+body.light {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #222;
+   overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+  
+}
+
+/* Carrusel */
+.carousel {
+   position: fixed;
+  top: 0;      /* Asegura que empiece desde arriba */
+  left: 0;     /* Asegura que empiece desde la izquierda */
+  width: 100vw; /* Usa el ancho total de la ventana */
+  height: 100vh;/* Usa el alto total de la ventana */
+  z-index: -1;  /* Si es fondo, ponlo detrás de todo */
+}
+
+.carousel img {
+  display: block; /* Elimina espacios vacíos debajo de la imagen */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* Fuerza a que la imagen se centre */
+
+ 
+  animation: fade 1s ease-in-out;
+}
+
+/* overlay tipo revista */
+.carousel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+@keyframes fade {
+  from { opacity: 0.5 }
+  to { opacity: 1 }
+}
+
+/* Menú inferior */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  gap: 30px;
+
+  background: rgba(14, 13, 13, 0.007);
+  backdrop-filter: blur(10px);
+
+  padding: 12px 25px;
+  border-radius: 50px;
+}
+
+/* Iconos */
+.bottom-nav i {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Hover zoom */
+.bottom-nav i:hover {
+  transform: scale(1.4);
+}
+
+/* Contenido general */
+.page {
+  padding: 0px;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+/* Tarjetas PRO */
+.card-festivo {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 20px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Hover efecto */
+.card-festivo:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Texto */
+.card-festivo h3 {
+  font-size: 16px;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* CARD HORIZONTAL 
+.card-horizontal {
+  display: flex;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.904);
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}*/
+
+/* Imagen */
+.card-horizontal img {
+  width: 240px;
+  height: 200%;
+  object-fit: cover;
+}
+
+/* Contenido */
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-content p {
+  font-size: 14px;
+  color: #faf8f8;
+}
+
+/* Hover efecto PRO */
+.card-horizontal:hover {
+  transform: scale(1.03);
+}
+/* NAV INTERNA */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  margin-bottom: 15px;
+}
+
+/* Botones tipo pill */
+.tab {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: rgba(0,0,0,0.1);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* Activo */
+.tab.active {
+  background: #3498db;
+  color: white;
+}
+
+/* Hover */
+.tab:hover {
+  transform: scale(1.1);
+}
+
+/* ===== TABS PRO ===== */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* BOTON TAB */
+.tab {
+  padding: 10px 15px;
+  border-radius: 25px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+/* ACTIVO */
+.tab.active {
+  background: #3498db;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* HOVER */
+.tab:hover {
+  transform: scale(1.08);
+}
+
+/* CONTENIDO */
+.contenido {
+  animation: fadeIn 0.3s ease;
+}
+
+/* TARJETAS DE CONTENIDO */
+.item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* CONTENEDOR GENERAL */
+#contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+}
+
+/* TARJETA */
+.accordion-item {
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 251, 251, 0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+}
+
+/* HEADER */
+.accordion-header {
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 15px;
+}
+
+/* ICONO */
+.icon {
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
+
+.icon.rotate {
+  transform: rotate(45deg);
+}
+
+/* BODY */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  padding: 0 16px;
+  opacity: 0;
+}
+
+.accordion-body.open {
+  padding: 0 16px 16px 16px;
+  opacity: 1;
+}
+
+/* TEXTO */
+.accordion-body p {
+  color: #000;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* SCROLL SUAVE */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --bg: #fbfbfd;
+  --card: rgba(255,255,255,0.05);
+  --text: #ffffff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+  gap: 32px;
+  padding: 30px;
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 250px;
+  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease; /* Controla la velocidad del zoom */
+  overflow: hidden;                /* Evita que el contenido se salga si tiene bordes redondeados */
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05); /* 1.05 aumenta un 5%. Usa 1.10 para un 10% */
+  z-index: 10;            /* Asegura que la card que crece se vea por encima de las otras */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Opcional: añade sombra para dar profundidad */
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay tipo revista */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: #fff;
+}
+
+
+
+
+
+
+
+.card h3 {
+  font-size: 35px;
+  margin: 0;
+}
+
+.card p {
+  font-size: 20px;
+  opacity: 0.8;
+}
+.secde {
+ margin: 0 auto;    /* Centra el bloque */
+  text-align: center; /* Centra el texto H1 y P */
+  width: 100%;       /* Asegura que ocupe todo el ancho para centrar el texto */
+  padding-top: 200px;  /* Espacio opcional arriba */
+/*transform: translateX(-50%);*/
+  
+ /* display: flex;*/
+ /* gap: 30px;*/
+
+  background: rgba(14, 13, 13, 0.007);
+  backdrop-filter: blur(5px);
+
+  /*padding: 12px 25px;*/
+  /*border-radius: 50px;*/
+}
+.secde h1 {
+  font-size: 6rem;   /* Tamaño grande para el título */
+  margin-bottom: 0;  /* Quita espacio extra */
+}
+
+.secde p {
+  font-size: 1.2rem; /* Tamaño legible en móviles */
+  color: #fcf8f8;       /* Un gris suave para el subtítulo */
+}
+/*==============estilo del buscador====================*/
+/* Contenedor que se queda fijo al hacer scroll */
+.header-flotante {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  /* Fondo semi-transparente para que se vea lo que pasa por debajo (Glassmorphism) */
+   background: rgba(14, 13, 13, 0.007);
+  backdrop-filter: blur(10px); /* Efecto de desenfoque muy moderno */
+}
+
+/* El buscador pequeño y elegante */
+.search-wrapper {
+  position: relative;
+  width: 85%; /* No ocupa todo el ancho, se ve más "flotante" */
+  max-width: 400px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); /* Sombra suave */
+}
+
+#search {
+  width: 100%;
+  padding: 12px 15px 12px 45px; /* Pequeño y estilizado */
+  border: 1px solid #eee;
+  border-radius: 50px; /* Estilo píldora */
+  font-size: 14px;
+  outline: none;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* Animación al tocar el buscador */
+#search:focus {
+  border-color: #0a0a0a;
+  box-shadow: 0 0 10px rgba(167, 119, 227, 0.2);
+}
+
+/* Icono de lupa pequeño */
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+/* Espaciado para que el contenido no empiece debajo del buscador */
+.page {
+  padding: 10px 20px;
+}
