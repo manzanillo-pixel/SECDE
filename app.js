@@ -6,7 +6,12 @@ let currentTab = "estudios";
 
 /* ================= NAV ================= */
 function navigate(view, id = null) {
-  clearInterval(intervalo);
+  if (intervalo) {
+    clearInterval(intervalo);
+    intervalo = null;
+  }
+
+  app.innerHTML = ""; // 👈 LIMPIA TODO
 
   switch(view) {
     case "home":
@@ -14,7 +19,7 @@ function navigate(view, id = null) {
       break;
 
     case "festivos":
-      renderFestivos(); // 👈 directo
+      renderFestivos();
       break;
 
     case "detalle":
@@ -31,21 +36,34 @@ function navigate(view, id = null) {
 function renderHome() {
   app.innerHTML = `
     <div class="carousel">
-      <img id="slide" src="">
+      <img id="slide">
+    </div>
+
+    <!-- NAV SOLO EN HOME -->
+    <div class="bottom-nav">
+      <i class="bi bi-house active" onclick="navigate('home')"></i>
+      <i class="bi bi-calendar-event" onclick="navigate('festivos')"></i>
+      <i class="bi bi-info-circle" onclick="navigate('about')"></i>
     </div>
   `;
 
   const slide = document.getElementById("slide");
 
+  if (!imagenesHome || imagenesHome.length === 0) {
+    console.error("imagenesHome vacío");
+    return;
+  }
+
+  let index = 0;
+
   function cambiarImagen() {
-    const random = imagenes[Math.floor(Math.random() * imagenes.length)];
-    slide.src = random;
+    slide.src = imagenesHome[index];
+    index = (index + 1) % imagenesHome.length;
   }
 
   cambiarImagen();
   intervalo = setInterval(cambiarImagen, 4000);
 }
-
 /* ================= FESTIVOS ================= */
 function renderFestivos(lista) {
   if (!lista) lista = festivos;
@@ -57,15 +75,20 @@ function renderFestivos(lista) {
     <span class="search-icon">🔍</span>
   </div>
 </header>
+<div class="page">
+      <div id="festivos" class="grid"></div>
+    </div>
+
+    ${renderNav("festivos")}
 
 <div class="page">
   <div id="festivos" class="grid">
     <!-- Aquí irán tus cards -->
   </div>
-</div>
+</div> `;
 
 
-  `;
+ 
 
   const cont = document.getElementById("festivos");
 
@@ -77,7 +100,7 @@ function renderFestivos(lista) {
   cont.innerHTML = lista.map(f => `
     <div class="card" onclick="navigate('detalle','${f.id}')">
 
-      <img src="${imagenes[Math.floor(Math.random()*imagenes.length)]}">
+      <img src="${f.imagen || 'img/default.jpg'}">
 
       <div class="card-content">
         <h3>${f.nombre}</h3>
@@ -106,6 +129,7 @@ function renderFestivos(lista) {
       renderFestivos(filtrados);
     });
   }
+  
 }
 /* ================= DETALLE ================= */
 function renderDetalle(id) {
@@ -178,7 +202,7 @@ function renderContenido() {
       
       <div class="accordion-header" onclick="toggleItem(${index})">
         <span>${item.titulo}</span>
-        <span class="icon">+</span>
+        <span class="icon">⌄</span>
       </div>
 
       <div class="accordion-body" id="item-${index}">
@@ -194,7 +218,10 @@ function renderAbout() {
     <div class="page">
       <h2>Acerca de SECDE</h2>
       <p>Portal cristiano para edificación espiritual.</p>
+      <br>
+      <button class="tab" onclick="navigate('festivos')">⬅ Volver</button>
     </div>
+    
   `;
 }
 
@@ -269,5 +296,14 @@ const tabs = [
   { id:"programas", nombre:"Programas" }
 ];
 */
+function renderNav(active = "") {
+  return `
+    <div class="bottom-nav">
+      <i class="bi bi-house ${active === "home" ? "active" : ""}" onclick="navigate('home')"></i>
+      <i class="bi bi-calendar-event ${active === "festivos" ? "active" : ""}" onclick="navigate('festivos')"></i>
+      <i class="bi bi-info-circle ${active === "about" ? "active" : ""}" onclick="navigate('about')"></i>
+    </div>
+  `;
+}
 /* ================= INIT ================= */
 navigate("home");
