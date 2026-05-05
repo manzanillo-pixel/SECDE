@@ -1,0 +1,669 @@
+/* ===== ABOUT SECTION ===== */
+.about-section {
+  max-width: 900px;
+  margin: 40px auto 0 auto;
+  background: rgba(255,255,255,0.85);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  padding: 32px 24px 32px 24px;
+  text-align: center;
+}
+
+.about-section h2 {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 18px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.about-content p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0;
+}
+
+.about-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+.about-img {
+  max-width: 220px;
+  max-height: 180px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  object-fit: cover;
+  background: #eee;
+}
+
+@media (max-width: 767px) {
+  .about-section {
+    padding: 18px 4vw;
+    margin: 18px 0 0 0;
+  }
+  .about-section h2 {
+    font-size: 1.5rem;
+  }
+  .about-content p {
+    font-size: 1rem;
+  }
+  .about-img {
+    max-width: 100vw;
+    max-height: 120px;
+  }
+}
+body.light {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #222;
+   overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+  
+}
+
+/* Carrusel */
+.carousel {
+   position: fixed;
+  top: 0;      /* Asegura que empiece desde arriba */
+  left: 0;     /* Asegura que empiece desde la izquierda */
+  width: 100vw; /* Usa el ancho total de la ventana */
+  height: 100vh;/* Usa el alto total de la ventana */
+  z-index: -1;  /* Si es fondo, ponlo detrás de todo */
+}
+
+.carousel img {
+   width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔥 CLAVE */
+}
+
+/* overlay tipo revista */
+.carousel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+@keyframes fade {
+  from { opacity: 0.5 }
+  to { opacity: 1 }
+}
+
+/* Menú inferior */
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  display: flex;
+  gap: 30px;
+background:black;
+  /*background: rgba(14, 13, 13, 0.007);*/
+  backdrop-filter: blur(10px);
+
+  padding: 12px 25px;
+  border-radius: 50px;
+  z-index: 1000;
+}
+
+/* Iconos */
+.bottom-nav i {
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Hover zoom */
+.bottom-nav i:hover {
+  transform: scale(1.4);
+}
+
+/* Contenido general
+.page {
+  padding: 0px;
+  color: #e40808;
+}
+*/
+
+
+/* NAV INTERNA */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 5px 20px;
+  margin-bottom: 8px;
+}
+
+/* Botones tipo pill */
+.tab {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background:black;
+  /*background: rgba(0,0,0,0.1);*/
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* Activo */
+.tab.active {
+  background: #0a0a0a;
+  color: white;
+}
+
+/* Hover */
+.tab:hover {
+  transform: scale(1.1);
+}
+
+/* ===== TABS PRO ===== */
+.tabs {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* BOTON TAB */
+.tab {
+  padding: 10px 15px;
+  border-radius: 25px;
+  background: rgb(245, 243, 243);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+/* ACTIVO */
+.tab.active {
+  background: #010508;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* HOVER */
+.tab:hover {
+  transform: scale(1.08);
+}
+
+/* CONTENIDO */
+.contenido {
+  animation: fadeIn 0.3s ease;
+}
+
+/* TARJETAS DE CONTENIDO */
+.item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* CONTENEDOR GENERAL */
+#contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px;
+  
+}
+
+/* TARJETA */
+.accordion-item {
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 251, 251, 0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.418);
+  transition: transform 0.2s ease;
+}
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+}
+
+/* HEADER */
+.accordion-header {
+  padding: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  font-size: 15px;
+}
+
+/* ICONO */
+.icon {
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
+
+.icon.rotate {
+  transform: rotate(45deg);
+}
+
+/* BODY */
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  padding: 0 16px;
+  opacity: 0;
+}
+
+.accordion-body.open {
+  padding: 0 16px 16px 16px;
+  opacity: 1;
+}
+
+/* TEXTO */
+.accordion-body p {
+  color: #000;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* SCROLL SUAVE */
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  max-width: 100vw;
+  max-height: 100vh;
+  position: relative;
+}
+
+:root {
+  --bg: #fbfbfd;
+  --card: rgba(255,255,255,0.05);
+  --text:#030303;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 30px;
+  cursor: pointer;
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .grid {
+    /* Tablets: Dos columnas */
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .grid {
+    /* Celulares: Una sola columna sin márgenes */
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0;
+  }
+}
+
+/*========================estilo card definitivo===================*/
+.card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  height: 350px;  /* PC por defecto */
+  
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, height 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+
+ }
+
+.card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(8, 8, 8, 0.5);
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay tipo revista */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  overflow-wrap: break-word;
+}
+
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-right:10px;
+  background: linear-gradient(to top, rgba(12, 12, 12, 0.966), transparent);
+  color: #fff;
+<<<<<<< HEAD
+  /*text-align: center;*/
+  
+=======
+  /*padding: 10px 12px;  👈 izquierda y derecha iguales */
+>>>>>>> ebb9159a0b2f255e79efe670ef7e1335c86a3a8c
+}
+
+.card h3 {
+  font-size: 35px;  /* PC por defecto */
+  margin: 0 auto;
+  /*text-align: center;*/
+  
+}
+
+.card p {
+ font-size: 20px;  /* PC por defecto */
+  opacity: 0.8;
+  margin: 4px auto 0;
+  padding: 10px;
+  text-align: center;
+  text-align: justify;
+<<<<<<< HEAD
+  
+=======
+
+>>>>>>> ebb9159a0b2f255e79efe670ef7e1335c86a3a8c
+}
+
+
+.secde {
+ margin: 0 auto;    /* Centra el bloque */
+  text-align: center; /* Centra el texto H1 y P */
+  width: 100%;       /* Asegura que ocupe todo el ancho para centrar el texto */
+  padding-top: 200px;  /* Espacio opcional arriba */
+  color: #fcf8f8;
+
+}
+.secde h1 {
+  font-size: 6rem;   /* Tamaño grande para el título */
+  margin-bottom: 0;  /* Quita espacio extra */
+}
+
+.secde p {
+  font-size: 1.2rem; /* Tamaño legible en móviles */
+  color: #fcf8f8;       /* Un gris suave para el subtítulo */
+  
+}
+/*==============estilo del buscador====================*/
+/* Contenedor que se queda fijo al hacer scroll */
+
+.header-flotante {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  background: black;
+  border-radius: 50px;
+  margin-bottom: 24px; /* Espacio entre buscador y cards */
+  /*backdrop-filter: blur(10px);*/
+}
+
+/* El buscador pequeño y elegante */
+
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#search {
+  width: 100%;
+  padding: 14px 18px 14px 50px;
+  border: 1px solid #eee;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  background: white;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Animación al tocar el buscador */
+#search:focus {
+  border-color: #0a0a0a;
+  box-shadow: 0 0 10px rgba(167, 119, 227, 0.2);
+}
+
+/* Icono de lupa pequeño */
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: 0.5;
+  pointer-events: none; /* 🔥 CLAVE */
+}
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 14px;
+
+  border-radius: 12px;
+  border: none;
+  outline: none;
+
+  font-size: 14px;
+
+  box-sizing: border-box;
+}
+/* Espaciado para que el contenido no empiece debajo del buscador */
+.page {
+  padding: 10px 20px;
+}
+
+.page h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+#pensamientos .card {
+  justify-content: center;
+  text-align: center;
+}
+
+#pensamientos p {
+  line-height: 1.6;
+}
+
+.card-horizontal {
+  display: flex;
+  align-items: center;
+
+  background: rgba(255, 255, 255, 0.904);
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Imagen */
+.card-horizontal img {
+  width: 240px;
+  height: 200%;
+  object-fit: cover;
+}
+/*posision de la bar*/
+.bottom-nav {
+  position: fixed;
+  bottom: 20px;
+}
+
+.top-nav {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+}
+
+/* ======= MEDIA QUERIES RESPONSIVAS ======= */
+
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .card {
+    height: 250px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  #search {
+    padding: 10px 12px 10px 40px;
+    font-size: 13px;
+    border-radius: 50px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .header-flotante {
+    padding: 10px 0;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+
+  .page {
+    padding: 0 0 0 0;
+    margin-top: 10px;
+  }
+
+  .tabs {
+    padding: 5px 0;
+    margin: 0;
+    gap: 8px;
+  }
+
+  .tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .bottom-nav {
+    bottom: 10px;
+    gap: 20px;
+    padding: 10px 20px;
+  }
+
+  .bottom-nav i {
+    font-size: 20px;
+  }
+
+  .secde {
+    padding-top: 150px;
+  }
+
+  .secde h1 {
+    font-size: 3rem;
+  }
+
+  .secde p {
+    font-size: 0.9rem;
+  }
+
+  .accordion-item {
+    margin-bottom: 10px;
+  }
+
+  .accordion-header {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+/* TABLETS (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card {
+    height: 300px;
+  }
+
+  .card h3 {
+    font-size: 28px;
+  }
+
+  .card p {
+    font-size: 16px;
+  }
+
+  .search-wrapper {
+    max-width: 600px;
+  }
+
+  #search {
+    padding: 12px 15px 12px 45px;
+    font-size: 15px;
+  }
+
+  .page {
+    padding: 15px;
+  }
+}
