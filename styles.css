@@ -379,12 +379,7 @@ html, body {
   padding-right:10px;
   background: linear-gradient(to top, rgba(12, 12, 12, 0.966), transparent);
   color: #fff;
-<<<<<<< HEAD
   /*text-align: center;*/
-  
-=======
-  /*padding: 10px 12px;  👈 izquierda y derecha iguales */
->>>>>>> ebb9159a0b2f255e79efe670ef7e1335c86a3a8c
 }
 
 .card h3 {
@@ -401,11 +396,6 @@ html, body {
   padding: 10px;
   text-align: center;
   text-align: justify;
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> ebb9159a0b2f255e79efe670ef7e1335c86a3a8c
 }
 
 
