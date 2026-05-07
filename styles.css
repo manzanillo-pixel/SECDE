@@ -411,7 +411,7 @@ html, body {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  overflow-wrap: break-word;
+  z-index: 1;
 }
 
 
@@ -420,10 +420,10 @@ html, body {
   bottom: 0;
   left: 0;
   width: 100%;
-  padding-right:10px;
-  background: linear-gradient(to top, rgba(12, 12, 12, 0.966), transparent);
+  padding: 15px 10px 10px 10px;
+  /*background: linear-gradient(to top, rgba(12, 12, 12, 0.966), rgba(0,0,0,0.5));*/
   color: #fff;
-  /*text-align: center;*/
+  z-index: 2;
 }
 
 .card h3 {
@@ -599,10 +599,12 @@ html, body {
 
   .card h3 {
     font-size: 24px;
+    
   }
 
   .card p {
     font-size: 14px;
+    font-style: italic;
   }
 
   .search-wrapper {
