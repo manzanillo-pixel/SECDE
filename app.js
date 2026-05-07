@@ -278,9 +278,9 @@ async function renderAbout() {
         <h2>${data.title || "Sobre SECDE"}</h2>
         <div class="about-content">
           <p>${data.description || ""}</p>
-          <div class="about-images">
+          <!--<div class="about-images">-->
             ${(data.images || []).map(img => `<img src="${img}" alt="about" class="about-img">`).join("")}
-          </div>
+          <!--</div>-->
         </div>
       </section>
       ${renderNav("about")}
