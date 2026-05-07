@@ -342,7 +342,7 @@ function renderPromesas() {
       <div style="color: #2046f1; font-weight: bold; margin-left: 10px; margin-bottom: 8px; font-size: 12px;">
         ${p.categoria || "Promesa"}
       </div>
-      <p style="margin: 10px 0; line-height: 1.6; font-style: italic;">"${p.texto}"</p>
+      <p style="margin-left:0; line-height: 1.6; font-style: italic;">"${p.texto}"</p>
       <div style="color: #fbfbfc; font-size: 12px;margin-left: 75%; margin-top: 10px; font-weight: bold;">
         ${p.referencia || "Biblia"}
       </div>
@@ -392,7 +392,7 @@ function renderPensamientos() {
         <div class="card">
           ${p.imagen ? `<img src="${p.imagen}" style="width: 100%; height: 100%; object-fit: cover;">` : ""}
           <div class="card-content">
-            <p style="margin: 10px 0; line-height: 1.6; font-style: italic; font-size: 14px;">"${p.texto}"</p>
+            <p style="margin-left: 0; line-height: 1.6; font-style: italic; font-size: 14px;">"${p.texto}"</p>
             ${p.autor ? `<div style="color: #fbfbfd; font-weight: bold; margin-left: 10px; margin-top: 10px; font-size: 12px; text-align: left;">— ${p.autor}</div>` : ""}
           </div>
         </div>
