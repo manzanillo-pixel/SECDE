@@ -364,7 +364,7 @@ function renderPensamientos() {
     if (typeof filtrados !== "undefined" && filtrados.length > 0) {
       cont.innerHTML = filtrados.map(p => `
         <div class="card">
-          ${p.imagen ? `<img src="${p.imagen}" style="width: 100%; height: 180px; object-fit: cover;">` : ""}
+          ${p.imagen ? `<img src="${p.imagen}" style="width: 100%; height: 100%; object-fit: cover;">` : ""}
           <div class="card-content">
             <p style="margin: 10px 0; line-height: 1.6; font-style: italic; font-size: 14px;">"${p.texto}"</p>
             ${p.autor ? `<div style="color: #667eea; font-weight: bold; margin-top: 10px; font-size: 12px; text-align: right;">— ${p.autor}</div>` : ""}

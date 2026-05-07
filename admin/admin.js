@@ -152,6 +152,7 @@ function generarFormularioPromesa() {
       <input type="text" id="prom-categoria" placeholder="Categoría (ej: Salvación, Paz, etc.)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
       <textarea id="prom-texto" placeholder="Texto de la promesa" rows="3" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: Arial;"></textarea>
       <input type="text" id="prom-referencia" placeholder="Referencia (ej: Juan 3:16)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
+      <input type="text" id="prom-imagen" placeholder="URL de imagen (opcional)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
       <button onclick="agregarPromesa()" class="btn-success">➕ Agregar Promesa</button>
     </div>
   `;
@@ -276,8 +277,9 @@ function generarListaPromesas() {
   return promesas.map((p, i) => `
     <div class="item">
       <div style="flex: 1;">
+        ${p.imagen ? `<img src="${p.imagen}" style="max-width: 100px; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;">` : ""}
         <div style="color: #667eea; font-weight: bold; margin-bottom: 5px; font-size: 12px;">${p.categoria || "Promesa"}</div>
-        <p style="margin: 5px 0; font-style: italic;">"${p.texto}"</p>
+        <p style="margin: 5px 0; font-style: italic;\"${p.texto}\"</p>
         <div style="color: #999; font-size: 12px; margin-top: 5px;">${p.referencia || ""}</div>
       </div>
       <div style="display: flex; gap: 5px; flex-direction: column;">
@@ -362,25 +364,23 @@ function agregarPromesa() {
   const categoria = document.getElementById("prom-categoria").value.trim();
   const texto = document.getElementById("prom-texto").value.trim();
   const referencia = document.getElementById("prom-referencia").value.trim();
+  const imagen = document.getElementById("prom-imagen").value.trim();
   
   if (!texto) {
     alert("⚠️ Completa el texto de la promesa");
     return;
   }
   
-  promesas.push({ categoria, texto, referencia });
+  promesas.push({ categoria, texto, referencia, imagen });
   
   document.getElementById("prom-categoria").value = "";
   document.getElementById("prom-texto").value = "";
   document.getElementById("prom-referencia").value = "";
+  document.getElementById("prom-imagen").value = "";
   
   guardarPromesas();
   mostrarSeccion("promesas");
 }
-  document.getElementById("prom-texto").value = "";
-  
-  guardarPromesas();
-  mostrarSeccion("promesas");
 
 
 function agregarPensamiento() {
