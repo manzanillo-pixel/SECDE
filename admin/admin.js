@@ -127,63 +127,6 @@ function mostrarSeccion(seccion) {
     html += "<hr>";
     html += generarListaImagenesAbout();
   }
-  // ===== ABOUT FORMULARIO Y LISTA =====
-  function generarFormularioAbout() {
-    return `
-      <div class="form-section">
-        <h3>Editar sección About</h3>
-        <input type="text" id="about-title" placeholder="Título" value="${aboutData.title || ''}">
-        <textarea id="about-desc" placeholder="Descripción" rows="3">${aboutData.description || ''}</textarea>
-        <button onclick="guardarAbout()" class="btn-success">💾 Guardar About</button>
-      </div>
-      <div class="form-section">
-        <h3>Agregar Imagen a About</h3>
-        <input type="text" id="about-img-url" placeholder="URL de la imagen">
-        <button onclick="agregarImagenAbout()" class="btn-success">➕ Agregar Imagen</button>
-      </div>
-    `;
-  }
-
-  function generarListaImagenesAbout() {
-    if (!aboutData.images || aboutData.images.length === 0) return "<p>No hay imágenes en About aún.</p>";
-    return aboutData.images.map((img, i) => `
-      <div class="item">
-        <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;">
-        <br>
-        <small>${img}</small>
-        <button onclick="eliminarImagenAbout(${i})" class="btn-danger">🗑 Eliminar</button>
-      </div>
-    `).join("");
-  }
-
-  function guardarAbout() {
-    const title = document.getElementById("about-title").value.trim();
-    const description = document.getElementById("about-desc").value.trim();
-    aboutData.title = title;
-    aboutData.description = description;
-    guardarDatos("about.json", aboutData);
-  }
-
-  function agregarImagenAbout() {
-    const url = document.getElementById("about-img-url").value.trim();
-    if (!url) {
-      alert("⚠️ Ingresa una URL de imagen");
-      return;
-    }
-    aboutData.images = aboutData.images || [];
-    aboutData.images.push(url);
-    document.getElementById("about-img-url").value = "";
-    guardarDatos("about.json", aboutData);
-    mostrarSeccion("about");
-  }
-
-  function eliminarImagenAbout(i) {
-    if (confirm("¿Eliminar esta imagen de About?")) {
-      aboutData.images.splice(i, 1);
-      guardarDatos("about.json", aboutData);
-      mostrarSeccion("about");
-    }
-  }
   
   contenedor.innerHTML = html;
 }
@@ -506,6 +449,65 @@ function eliminarImagen(i) {
     homeImages.splice(i, 1);
     guardarImagenes();
     mostrarSeccion("imagenes");
+  }
+}
+
+// ===== FUNCIONES ABOUT =====
+function generarFormularioAbout() {
+  return `
+    <div class="form-section">
+      <h3>Editar sección About</h3>
+      <input type="text" id="about-title" placeholder="Título" value="${aboutData.title || ''}">
+      <textarea id="about-desc" placeholder="Descripción" rows="3">${aboutData.description || ''}</textarea>
+      <button onclick="guardarAbout()" class="btn-success">💾 Guardar About</button>
+    </div>
+    <div class="form-section">
+      <h3>Agregar Imagen a About</h3>
+      <input type="text" id="about-img-url" placeholder="URL de la imagen">
+      <button onclick="agregarImagenAbout()" class="btn-success">➕ Agregar Imagen</button>
+    </div>
+  `;
+}
+
+function generarListaImagenesAbout() {
+  if (!aboutData.images || aboutData.images.length === 0) return "<p>No hay imágenes en About aún.</p>";
+  return aboutData.images.map((img, i) => `
+    <div class="item">
+      <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;">
+      <br>
+      <small>${img}</small>
+      <button onclick="eliminarImagenAbout(${i})" class="btn-danger">🗑 Eliminar</button>
+    </div>
+  `).join("");
+}
+
+function guardarAbout() {
+  const title = document.getElementById("about-title").value.trim();
+  const description = document.getElementById("about-desc").value.trim();
+  aboutData.title = title;
+  aboutData.description = description;
+  guardarDatos("about.json", aboutData);
+  mostrarSeccion("about");
+}
+
+function agregarImagenAbout() {
+  const url = document.getElementById("about-img-url").value.trim();
+  if (!url) {
+    alert("⚠️ Ingresa una URL de imagen");
+    return;
+  }
+  aboutData.images = aboutData.images || [];
+  aboutData.images.push(url);
+  document.getElementById("about-img-url").value = "";
+  guardarDatos("about.json", aboutData);
+  mostrarSeccion("about");
+}
+
+function eliminarImagenAbout(i) {
+  if (confirm("¿Eliminar esta imagen de About?")) {
+    aboutData.images.splice(i, 1);
+    guardarDatos("about.json", aboutData);
+    mostrarSeccion("about");
   }
 }
 
