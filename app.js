@@ -256,14 +256,31 @@ function toggleItem(index) {
 function renderNav(active = "") {
   return `
     <div class="bottom-nav">
-      <i class="bi bi-house ${active === 'home' ? 'active' : ''}" onclick="navigate('home')"></i>
+      <i class="bi bi-house ${active === 'home' ? 'active' : ''}" 
+         onclick="navigate('home')" data-tooltip="Inicio"></i>
+      <i class="bi bi-calendar-event ${active === 'festivos' ? 'active' : ''}" 
+         onclick="navigate('festivos')" data-tooltip="Festivos"></i>
+      <i class="bi bi-book ${active === 'promesas' ? 'active' : ''}" 
+         onclick="navigate('promesas')" data-tooltip="Promesas"></i>
+      <i class="bi bi-chat-quote ${active === 'pensamientos' ? 'active' : ''}" 
+         onclick="navigate('pensamientos')" data-tooltip="Pensamientos"></i>
+      <i class="bi bi-info-circle ${active === 'about' ? 'active' : ''}" 
+         onclick="navigate('about')" data-tooltip="Sobre SECDE"></i>
+    </div>
+  `;
+}
+
+/*function renderNav(active = "") {
+  return `
+    <div class="bottom-nav">
+      <i class="bi bi-house ${active === 'home' ? 'active' : ''}" onclick="navigate('home')"data-tooltip="Inicio"></i>
       <i class="bi bi-calendar-event ${active === 'festivos' ? 'active' : ''}" onclick="navigate('festivos')"></i>
       <i class="bi bi-book ${active === 'promesas' ? 'active' : ''}" onclick="navigate('promesas')"></i>
       <i class="bi bi-chat-quote ${active === 'pensamientos' ? 'active' : ''}" onclick="navigate('pensamientos')"></i>
       <i class="bi bi-info-circle ${active === 'about' ? 'active' : ''}" onclick="navigate('about')"></i>
     </div>
   `;
-}
+}*/
 
 /* ================= OTRAS SECCIONES ================= */
 async function renderAbout() {
@@ -273,18 +290,22 @@ async function renderAbout() {
     const res = await fetch(url);
     if (!res.ok) throw new Error("No se pudo cargar el contenido About");
     const data = await res.json();
-    app.innerHTML = `
-      <section class="about-section">
-        <h2>${data.title || "Sobre SECDE"}</h2>
-        <div class="about-content">
-          <p>${data.description || ""}</p>
-          <!--<div class="about-images">-->
-            ${(data.images || []).map(img => `<img src="${img}" alt="about" class="about-img">`).join("")}
-          <!--</div>-->
-        </div>
-      </section>
-      ${renderNav("about")}
-    `;
+    // Dentro de tu renderAbout()
+app.innerHTML = `
+  <section class="about-section">
+    ${data.images && data.images.length > 0 
+      ? `<img src="${data.images[0]}" alt="header" class="about-header-img">` 
+      : ''}
+    <div class="about-container">
+      <h2>${data.title || "Sobre SECDE"}</h2>
+      <div class="about-content">
+        <p>${data.description || ""}</p>
+      </div>
+    </div>
+  </section>
+  ${renderNav("about")}
+`;
+
   } catch (e) {
     app.innerHTML = `<div class="page"><h2>Sobre SECDE</h2><p>No se pudo cargar la información.</p>${renderNav("about")}</div>`;
   }
@@ -311,19 +332,24 @@ function renderPromesas() {
 
   function renderPromesasList(filtradas = promesas) {
     if (typeof filtradas !== "undefined" && filtradas.length > 0) {
-      cont.innerHTML = filtradas.map((p, i) => `
-        <div class="card">
-          <div class="card-content">
-            <div style="color: #667eea; font-weight: bold; margin-bottom: 8px; font-size: 12px;">
-              ${p.categoria || "Promesa"}
-            </div>
-            <p style="margin: 10px 0; line-height: 1.6; font-style: italic;">"${p.texto}"</p>
-            <div style="color: #999; font-size: 12px; margin-top: 10px; font-weight: bold;">
-              ${p.referencia || "Biblia"}
-            </div>
-          </div>
-        </div>
-      `).join("");
+  cont.innerHTML = filtradas.map((p, i) => `
+  <div class="card">
+    ${p.imagen ? `
+      <div class="card-image-container">
+        <img src="${p.imagen}" alt="Promesa">
+      </div>` : ""}
+    <div class="card-content">
+      <div style="color: #667eea; font-weight: bold; margin-bottom: 8px; font-size: 12px;">
+        ${p.categoria || "Promesa"}
+      </div>
+      <p style="margin: 10px 0; line-height: 1.6; font-style: italic;">"${p.texto}"</p>
+      <div style="color: #999; font-size: 12px; margin-top: 10px; font-weight: bold;">
+        ${p.referencia || "Biblia"}
+      </div>
+    </div>
+  </div>
+`).join("");
+
     } else {
       cont.innerHTML = "<p style='text-align:center'>No hay promesas cargadas aún.</p>";
     }
