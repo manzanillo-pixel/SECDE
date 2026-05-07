@@ -1,6 +1,7 @@
 {
   "promesas": [
     {
+<<<<<<< HEAD
       "categoria": "Fe",
       "texto": "Ahora bien, la fe es la garantÃ­a de lo que se espera, la convicciÃ³n de lo que no se ve.",
       "referencia": "Hebreos 11:1",
@@ -10,6 +11,24 @@
       "categoria": "paz",
       "texto": "hgjgj",
       "referencia": "lkhohj"
+=======
+      "categoria": "salvacion",
+      "texto": "El amor de Dios y el regalo de la salvaciÃÂÃÂ³n.",
+      "referencia": "Juan 3:16",
+      "imagen": "https://i0.wp.com/elpuntocristiano.org/wp-content/uploads/2015/04/de-corazon-jesus.jpg?resize=300%2C224"
+    },
+    {
+      "categoria": "Vida Eterna",
+      "texto": "La promesa fundamental de salvaciÃ³n para todo aquel que cree en Jesucristo",
+      "referencia": "(Juan 3:16)",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV5QHnHMK7YqRwHsbhM2JXR32Mmfu7_-Vgrw&s"
+    },
+    {
+      "categoria": "fdgdgdfgd",
+      "texto": "fdgdfgdfg",
+      "referencia": "dfgdfgdf",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKezrnP8atSL73x0hIPn2ysnM7BIJbootRdg&s"
+>>>>>>> cdfb977f96194773379dad9c0788b2fe94b1a3c0
     }
   ]
 }
