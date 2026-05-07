@@ -335,7 +335,7 @@ function renderPromesas() {
   cont.innerHTML = filtradas.map((p, i) => `
   <div class="card">
     ${p.imagen ? `
-      <div class="card-image-container">
+      <div class="card">
         <img src="${p.imagen}" alt="Promesa">
       </div>` : ""}
     <div class="card-content">

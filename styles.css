@@ -721,7 +721,7 @@ html, body {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarse */
-  display: block;
+  /*display: block;*/
 }
 
 }
