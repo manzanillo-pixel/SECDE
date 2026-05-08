@@ -879,6 +879,11 @@ function editarPromesa(index) {
       <label>Referencia:</label>
       <input type="text" id="edit-prom-referencia" value="${promesa.referencia || ""}" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
       
+      <label>Imagen:</label>
+      <input type="text" id="edit-prom-imagen" value="${promesa.imagen || ""}" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
+      
+
+
       <div style="display: flex; gap: 10px;">
         <button onclick="guardarEditPromesa(${index})" class="btn-success" style="flex: 1;">✅ Guardar Cambios</button>
         <button onclick="mostrarSeccion('promesas')" class="btn-secondary" style="flex: 1;">❌ Cancelar</button>
@@ -893,7 +898,7 @@ function guardarEditPromesa(index) {
   const newCategoria = document.getElementById("edit-prom-categoria").value.trim();
   const newTexto = document.getElementById("edit-prom-texto").value.trim();
   const newReferencia = document.getElementById("edit-prom-referencia").value.trim();
-  
+   const nuevaImg = document.getElementById('edit-prom-imagen').value; 
   if (!newTexto) {
     alert("⚠️ Completa el texto");
     return;
@@ -902,6 +907,7 @@ function guardarEditPromesa(index) {
   promesas[index].categoria = newCategoria;
   promesas[index].texto = newTexto;
   promesas[index].referencia = newReferencia;
+  promesas[index].imagen = nuevaImg;
   
   console.log(`✅ Promesa actualizada`);
   guardarPromesas();
