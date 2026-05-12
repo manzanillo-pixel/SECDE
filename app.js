@@ -482,18 +482,19 @@ function renderPromesas() {
           <div class="card-content">
 
             <div style="
-              color:#2046f1;
-              font-weight:bold;
-              margin-left:10px;
-              margin-bottom:8px;
+              color:#fbfbfc;
+              text-decoration:underline;
               font-size:12px;
+              margin-rigth:75%;
+              margin-top:10px;
+              font-weight:bold;
             ">
               ${p.categoria || "Promesa"}
             </div>
 
             <p style="
               margin-left:0;
-              line-height:1.6;
+              line-height:1.5;
               font-style:italic;
             ">
               "${p.texto}"
@@ -729,18 +730,7 @@ function renderPensamientos() {
           ` : ""}
 
           <div class="card-content">
-
-            ${p.autor ? `
-              <div style="
-                color:#2046f1;
-                font-weight:bold;
-                margin-bottom:8px;
-                font-size:12px;
-              ">
-                ${p.autor}
-              </div>
-            ` : ""}
-
+         
             <p style="
               margin-left:0;
               line-height:1.6;
@@ -749,7 +739,18 @@ function renderPensamientos() {
             ">
               "${p.texto}"
             </p>
-
+          ${p.autor ? `
+              <div style="
+              alining-text:left;
+                color:white;
+                font-weight:bold;
+                margin-bottom:8px;
+                font-size:12px;
+                
+              ">
+                ${p.autor}
+              </div>
+            ` : ""}
           </div>
 
         </div>
