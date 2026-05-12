@@ -86,11 +86,11 @@ async function cargarDatos() {
       headers: { "Authorization": `Bearer ${GITHUB_TOKEN}` }
     });
 
-    if (festRes.ok) festivos = JSON.parse(atob(await festRes.json().then(r => r.content))).festivos || [];
-    if (promRes.ok) promesas = JSON.parse(atob(await promRes.json().then(r => r.content))).promesas || [];
-    if (pensRes.ok) pensamientos = JSON.parse(atob(await pensRes.json().then(r => r.content))).pensamientos || [];
-    if (homeRes.ok) homeImages = JSON.parse(atob(await homeRes.json().then(r => r.content))).imagenes || [];
-    if (aboutRes.ok) aboutData = JSON.parse(atob(await aboutRes.json().then(r => r.content)));
+    if (festRes.ok) festivos = JSON.parse(decodeURIComponent(Array.prototype.map.call(atob(await festRes.json().then(r => r.content)), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))).festivos || [];
+    if (promRes.ok) promesas = JSON.parse(decodeURIComponent(Array.prototype.map.call(atob(await promRes.json().then(r => r.content)), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))).promesas || [];
+    if (pensRes.ok) pensamientos = JSON.parse(decodeURIComponent(Array.prototype.map.call(atob(await pensRes.json().then(r => r.content)), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))).pensamientos || [];
+    if (homeRes.ok) homeImages = JSON.parse(decodeURIComponent(Array.prototype.map.call(atob(await homeRes.json().then(r => r.content)), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''))).imagenes || [];
+    if (aboutRes.ok) aboutData = JSON.parse(decodeURIComponent(Array.prototype.map.call(atob(await aboutRes.json().then(r => r.content)), c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join('')));
 
     mostrarSeccion("festivos");
   } catch (error) {
@@ -526,8 +526,9 @@ async function guardarDatos(archivo, datos) {
       sha = await getRes.json().then(r => r.sha);
     }
     
-    // Convertir a base64
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify(datos, null, 2))));
+    // Convertir a base64 correctamente (UTF-8)
+    const jsonStr = JSON.stringify(datos, null, 2);
+    const content = btoa(encodeURIComponent(jsonStr).replace(/%([0-9A-F]{2})/g, (match, p1) => String.fromCharCode(parseInt(p1, 16))));
     
     // Actualizar archivo
     const updateRes = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {

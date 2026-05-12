@@ -10,6 +10,32 @@
   overflow: hidden;
   
 }
+.category-select{
+position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  background: rgb(250, 249, 249);
+  border-radius: 50px;
+  margin-bottom: 24px; /* Espacio entre buscador y cards */
+ 
+  /*position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px 0;
+  background: rgb(247, 245, 245);
+  border-radius: 50px;
+  margin-bottom: 24px;*/
+}
+
 
 .about-section h2 {
   font-size: 2.5rem;

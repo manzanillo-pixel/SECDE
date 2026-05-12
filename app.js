@@ -312,12 +312,45 @@ app.innerHTML = `
 }
 
 function renderPromesas() {
+
+  // Obtener categorías únicas
+  const categorias = [...new Set(
+    promesas
+      .map(p => p.categoria)
+      .filter(c => c && c.trim() !== "")
+  )];
+
   app.innerHTML = `
-  <header class="header-flotante">
+    
+    <header class="header-flotante">
+
       <div class="search-wrapper">
         <input type="text" id="search" placeholder="Buscar promesas...">
         <span class="search-icon">🔍</span>
       </div>
+
+      <div class="category-menu">
+
+        <button id="categoryBtn" class="category-btn">
+  ☰
+</button>
+
+        <div id="categoryDropdown" class="category-dropdown">
+
+          <div class="category-item" data-cat="">
+            Todas las categorías
+          </div>
+
+          ${categorias.map(cat => `
+            <div class="category-item" data-cat="${cat}">
+              ${cat}
+            </div>
+          `).join("")}
+
+        </div>
+
+      </div>
+
     </header>
 
     <div class="page">
@@ -327,93 +360,458 @@ function renderPromesas() {
     ${renderNav("promesas")}
   `;
 
+  // ===== CSS dinámico =====
+  const style = document.createElement("style");
+
+  style.innerHTML = `
+
+    .category-menu{
+      position:relative;
+      margin-top:24px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .category-btn{
+     position:absolute;
+  top:10px;
+  right:1px;
+  transform:translateY(-50%);
+  margin-top:50%; 
+  z-index:10;
+      width:50px;
+      height:50px;
+      border:1px solid #c7c5c5;
+      border-radius:50%;
+      background:black;
+      color:white;
+      font-size:24px;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);
+      transition:.2s;
+    }
+
+    .category-btn:hover{
+      transform:scale(1.05);
+    }
+
+    .category-dropdown{
+      position:absolute;
+      top:65px;
+      background:#fff;
+      border-radius:16px;
+      min-width:240px;
+      box-shadow:0 10px 30px rgba(0,0,0,.15);
+      overflow:hidden;
+      display:none;
+      z-index:1000;
+    }
+
+    .category-dropdown.show{
+      display:block;
+      animation:fadeIn .2s ease;
+    }
+
+    .category-item{
+      padding:7px 9px;
+      cursor:pointer;
+      transition:.2s;
+      font-size:14px;
+      color:#222;
+    }
+
+    .category-item:hover{
+      background:#f1f4ff;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(-10px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+  `;
+
+  document.head.appendChild(style);
+
   const cont = document.getElementById("promesas");
   const search = document.getElementById("search");
 
-  function renderPromesasList(filtradas = promesas) {
-    if (typeof filtradas !== "undefined" && filtradas.length > 0) {
-  cont.innerHTML = filtradas.map((p, i) => `
-  <div class="card">
-    ${p.imagen ? `
-      <div class="card">
-        <img src="${p.imagen}" alt="Promesa">
-      </div>` : ""}
-    <div class="card-content">
-      <div style="color: #2046f1; font-weight: bold; margin-left: 10px; margin-bottom: 8px; font-size: 12px;">
-        ${p.categoria || "Promesa"}
-      </div>
-      <p style="margin-left:0; line-height: 1.6; font-style: italic;">"${p.texto}"</p>
-      <div style="color: #fbfbfc; font-size: 12px;margin-left: 75%; margin-top: 10px; font-weight: bold;">
-        ${p.referencia || "Biblia"}
-      </div>
-    </div>
-  </div>
-`).join("");
+  const categoryBtn = document.getElementById("categoryBtn");
+  const categoryDropdown = document.getElementById("categoryDropdown");
+
+  let categoriaSeleccionada = "";
+
+  // ===== Abrir/Cerrar categorías =====
+  categoryBtn.addEventListener("click", () => {
+    categoryDropdown.classList.toggle("show");
+  });
+
+  // ===== Seleccionar categoría =====
+  document.querySelectorAll(".category-item").forEach(item => {
+
+    item.addEventListener("click", () => {
+
+      categoriaSeleccionada = item.dataset.cat;
+
+      categoryDropdown.classList.remove("show");
+
+      filterPromesas();
+    });
+
+  });
+
+  // ===== Render cards =====
+  function renderPromesasList(lista = promesas) {
+
+    if (lista.length > 0) {
+
+      cont.innerHTML = lista.map((p) => `
+
+        <div class="card">
+
+          ${p.imagen ? `
+            <img src="${p.imagen}" alt="Promesa">
+          ` : ""}
+
+          <div class="card-content">
+
+            <div style="
+              color:#2046f1;
+              font-weight:bold;
+              margin-left:10px;
+              margin-bottom:8px;
+              font-size:12px;
+            ">
+              ${p.categoria || "Promesa"}
+            </div>
+
+            <p style="
+              margin-left:0;
+              line-height:1.6;
+              font-style:italic;
+            ">
+              "${p.texto}"
+            </p>
+
+            <div style="
+              color:#fbfbfc;
+              font-size:12px;
+              margin-left:75%;
+              margin-top:10px;
+              font-weight:bold;
+            ">
+              ${p.referencia || "Biblia"}
+            </div>
+
+          </div>
+
+        </div>
+
+      `).join("");
 
     } else {
-      cont.innerHTML = "<p style='text-align:center'>No hay promesas cargadas aún.</p>";
+
+      cont.innerHTML = `
+        <p style="text-align:center">
+          No se encontraron promesas.
+        </p>
+      `;
     }
   }
 
-  renderPromesasList();
+  // ===== Filtros =====
+  function filterPromesas() {
 
-  search.addEventListener("input", e => {
-    const texto = e.target.value.toLowerCase();
-    const filtradas = promesas.filter(p =>
-      (p.texto && p.texto.toLowerCase().includes(texto)) ||
-      (p.referencia && p.referencia.toLowerCase().includes(texto)) ||
-      (p.categoria && p.categoria.toLowerCase().includes(texto))
-    );
+    const texto = search.value.toLowerCase();
+
+    const filtradas = promesas.filter(p => {
+
+      const coincideTexto =
+
+        (p.texto &&
+          p.texto.toLowerCase().includes(texto)) ||
+
+        (p.referencia &&
+          p.referencia.toLowerCase().includes(texto)) ||
+
+        (p.categoria &&
+          p.categoria.toLowerCase().includes(texto));
+
+      const coincideCategoria =
+
+        categoriaSeleccionada === "" ||
+        p.categoria === categoriaSeleccionada;
+
+      return coincideTexto && coincideCategoria;
+    });
+
     renderPromesasList(filtradas);
-  });
-}
+  }
 
+  // ===== Buscar =====
+  search.addEventListener("input", filterPromesas);
+
+  // ===== Cerrar dropdown al tocar fuera =====
+  document.addEventListener("click", (e) => {
+
+    if (
+      !categoryBtn.contains(e.target) &&
+      !categoryDropdown.contains(e.target)
+    ) {
+      categoryDropdown.classList.remove("show");
+    }
+
+  });
+
+  // ===== Render inicial =====
+  renderPromesasList();
+}
 function renderPensamientos() {
+
+  // ===== AUTORES ÚNICOS =====
+  const categorias = [...new Set(
+    pensamientos
+      .map(p => p.autor)
+      .filter(a => a && a.trim() !== "")
+  )];
+
   app.innerHTML = `
-  <header class="header-flotante">
+
+    <header class="header-flotante">
+
       <div class="search-wrapper">
         <input type="text" id="search" placeholder="Buscar pensamientos...">
         <span class="search-icon">🔍</span>
       </div>
+
+      <div class="category-menu">
+
+        <button id="categoryBtn" class="category-btn">
+          ☰
+        </button>
+
+        <div id="categoryDropdown" class="category-dropdown">
+
+          <div class="category-item" data-cat="">
+            Todos los autores
+          </div>
+
+          ${categorias.map(cat => `
+            <div class="category-item" data-cat="${cat}">
+              ${cat}
+            </div>
+          `).join("")}
+
+        </div>
+
+      </div>
+
     </header>
 
     <div class="page">
       <div class="grid" id="pensamientos"></div>
     </div>
+
     ${renderNav("pensamientos")}
   `;
+
+  // ===== CSS =====
+  const style = document.createElement("style");
+
+  style.innerHTML = `
+
+    .category-menu{
+      position:absolute;
+      top:50%;
+      right:16px;
+      transform:translateY(-50%);
+      z-index:100;
+    }
+
+    .category-btn{
+     position:absolute;
+  top:10px;
+  right:1px;
+  transform:translateY(-50%);
+  margin-top:50%; 
+  z-index:10;
+      width:50px;
+      height:50px;
+      border:1px solid #c7c5c5;
+      border-radius:50%;
+      background:black;
+      color:white;
+      font-size:24px;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(0,0,0,.2);
+      transition:.2s;
+    }
+    .category-dropdown{
+      position:absolute;
+      top:55px;
+      right:0;
+      background:#fff;
+      border-radius:14px;
+      min-width:220px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,.15);
+      display:none;
+    }
+
+    .category-dropdown.show{
+      display:block;
+    }
+
+    .category-item{
+      padding:14px 18px;
+      cursor:pointer;
+      transition:.2s;
+      color:#222;
+      font-size:14px;
+    }
+
+    .category-item:hover{
+      background:#f1f4ff;
+    }
+
+  `;
+
+  document.head.appendChild(style);
 
   const cont = document.getElementById("pensamientos");
   const search = document.getElementById("search");
 
+  const categoryBtn = document.getElementById("categoryBtn");
+  const categoryDropdown = document.getElementById("categoryDropdown");
+
+  let categoriaSeleccionada = "";
+
+  // ===== ABRIR/CERRAR MENÚ =====
+  categoryBtn.addEventListener("click", () => {
+    categoryDropdown.classList.toggle("show");
+  });
+
+  // ===== SELECCIONAR AUTOR =====
+  document.querySelectorAll(".category-item").forEach(item => {
+
+    item.addEventListener("click", () => {
+
+      categoriaSeleccionada = item.dataset.cat;
+
+      categoryDropdown.classList.remove("show");
+
+      filtrarPensamientos();
+
+    });
+
+  });
+
+  // ===== RENDER =====
   function renderPensamientosList(filtrados = pensamientos) {
-    if (typeof filtrados !== "undefined" && filtrados.length > 0) {
+
+    if (filtrados.length > 0) {
+
       cont.innerHTML = filtrados.map(p => `
+
         <div class="card">
-          ${p.imagen ? `<img src="${p.imagen}" style="width: 100%; height: 100%; object-fit: cover;">` : ""}
+
+          ${p.imagen ? `
+            <img 
+              src="${p.imagen}" 
+              style="width:100%; height:100%; object-fit:cover;"
+            >
+          ` : ""}
+
           <div class="card-content">
-            <p style="margin-left: 0; line-height: 1.6; font-style: italic; font-size: 14px;">"${p.texto}"</p>
-            ${p.autor ? `<div style="color: #fbfbfd; font-weight: bold; margin-left: 10px; margin-top: 10px; font-size: 12px; text-align: left;">— ${p.autor}</div>` : ""}
+
+            ${p.autor ? `
+              <div style="
+                color:#2046f1;
+                font-weight:bold;
+                margin-bottom:8px;
+                font-size:12px;
+              ">
+                ${p.autor}
+              </div>
+            ` : ""}
+
+            <p style="
+              margin-left:0;
+              line-height:1.6;
+              font-style:italic;
+              font-size:14px;
+            ">
+              "${p.texto}"
+            </p>
+
           </div>
+
         </div>
+
       `).join("");
+
     } else {
-      cont.innerHTML = "<p style='text-align:center'>No hay pensamientos cargados aún.</p>";
+
+      cont.innerHTML = `
+        <p style="text-align:center">
+          No hay pensamientos cargados aún.
+        </p>
+      `;
     }
   }
 
-  renderPensamientosList();
+  // ===== FILTRAR =====
+  function filtrarPensamientos() {
 
-  search.addEventListener("input", e => {
-    const texto = e.target.value.toLowerCase();
-    const filtrados = pensamientos.filter(p =>
-      (p.texto && p.texto.toLowerCase().includes(texto)) ||
-      (p.autor && p.autor.toLowerCase().includes(texto))
-    );
+    const texto = search.value.toLowerCase();
+
+    const filtrados = pensamientos.filter(p => {
+
+      const coincideTexto =
+
+        (p.texto &&
+          p.texto.toLowerCase().includes(texto)) ||
+
+        (p.autor &&
+          p.autor.toLowerCase().includes(texto));
+
+      const coincideCategoria =
+
+        categoriaSeleccionada === "" ||
+        p.autor === categoriaSeleccionada;
+
+      return coincideTexto && coincideCategoria;
+
+    });
+
     renderPensamientosList(filtrados);
+
+  }
+
+  // ===== BUSCAR =====
+  search.addEventListener("input", filtrarPensamientos);
+
+  // ===== CERRAR MENÚ AL TOCAR FUERA =====
+  document.addEventListener("click", (e) => {
+
+    if (
+      !categoryBtn.contains(e.target) &&
+      !categoryDropdown.contains(e.target)
+    ) {
+      categoryDropdown.classList.remove("show");
+    }
+
   });
-}
-async function guardar() {
+
+  // ===== INICIAL =====
+  renderPensamientosList();
+}async function guardar() {
   const nuevo = document.getElementById("editor").value;
 
   try {
