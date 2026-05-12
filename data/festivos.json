@@ -1,38 +1,6 @@
 {
   "festivos": [
     {
-      "id": "dia de los padres",
-      "nombre": "Dia de los Padres",
-      "descripcion": "El DÃÂ­a del Padre es una festividad que se celebra en honor a los padres. Su dÃÂ­a de celebraciÃÂ³n varÃÂ­a segÃÂºn el paÃÂ­s y la costumbre; algunos paÃÂ­ses la celebran en un dÃÂ­a que corresponde a una tradiciÃÂ³n religiosa, y otros que han establecido una fecha basada en el calendario civil.",
-      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDhXDDp1Dgbe8PISZFEKdlOi-Bb0IqEUbKQA&s",
-      "contenido": {
-        "estudios": [
-          {
-            "titulo": "Estudio de padres",
-            "texto": "dfskdhfsduhflsÃÂ±dufhslÃÂ±dfhskdfhsÃÂ±fdhsÃÂ± (editado)"
-          }
-        ],
-        "predicacion": [
-          {
-            "titulo": "predicacion de padres",
-            "texto": "woerpwoiehrfwpoeirhfwoeir"
-          }
-        ],
-        "canciones": [
-          {
-            "titulo": "papa es jesus",
-            "texto": "fjwÃÂ´fuÃÂ´wiÃÂ³ipjwÃÂ³eifjwoir"
-          }
-        ],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
-    },
-    {
       "id": "dia de las madres",
       "nombre": "Dia d las Madres",
       "descripcion": "CelebraciÃ³n en honor a las madres, que tiene lugar en gran parte de los paÃ­ses del mundo. Aunque la fecha varÃ­a segÃºn el paÃ­s, la festividad tiene en comÃºn rendir homenaje a todas las madres, manifestÃ¡ndose a travÃ©s de regalos y eventos, fundamentalmente entre familiares y amigos.",
