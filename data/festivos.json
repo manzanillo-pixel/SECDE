@@ -16,23 +16,6 @@
         "poesias": [],
         "programas": []
       }
-    },
-    {
-      "id": "Madre",
-      "nombre": "Madres",
-      "descripcion": "Jdjdhdhdhdhdhdyd",
-      "imagen": "img/default.jpg",
-      "contenido": {
-        "estudios": [],
-        "predicacion": [],
-        "canciones": [],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
     }
   ]
 }
