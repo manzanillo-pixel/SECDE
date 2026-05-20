@@ -202,12 +202,92 @@ function crearTab(id, texto) {
 }
 
 function cambiarTab(tab) {
+
   currentTab = tab;
+
+  currentSearch = "";
+
   renderDetalle(festivoActual);
 }
 
+/*function cambiarTab(tab) {
+  currentTab = tab;
+  renderDetalle(festivoActual);
+}*/
+
+/* ================= CONTENIDO ================= */
 /* ================= CONTENIDO ================= */
 function renderContenido() {
+
+  const cont = document.getElementById("contenido");
+
+  const festivo = festivos.find(f => f.id === festivoActual);
+
+  if (!festivo || !festivo.contenido || !festivo.contenido[currentTab]) {
+    cont.innerHTML = "<p>No hay contenido disponible.</p>";
+    return;
+  }
+
+  let data = festivo.contenido[currentTab];
+
+  // 🔥 FILTRO DEL BUSCADOR
+  if (currentSearch.trim() !== "") {
+
+    data = data.filter(item => {
+
+      const titulo = item.titulo
+        ? item.titulo.toLowerCase()
+        : "";
+
+      const texto = item.texto
+        ? item.texto.toLowerCase()
+        : "";
+
+      return (
+        titulo.includes(currentSearch) ||
+        texto.includes(currentSearch)
+      );
+
+    });
+
+  }
+
+  // 🔥 SI NO HAY RESULTADOS
+  if (!data || data.length === 0) {
+
+    cont.innerHTML = `
+      <p style="text-align:center">
+        No se encontraron resultados.
+      </p>
+    `;
+
+    return;
+  }
+
+  // 🔥 RENDER ACORDEÓN
+  cont.innerHTML = data.map((item, index) => `
+
+    <div class="accordion-item">
+
+      <div class="accordion-header" onclick="toggleItem(${index})">
+
+        <span>${item.titulo}</span>
+
+        <span class="icon">+</span>
+
+      </div>
+
+      <div class="accordion-body" id="item-${index}">
+
+        <p>${item.texto || "Contenido disponible."}</p>
+
+      </div>
+
+    </div>
+
+  `).join("");
+}
+/*function renderContenido() {
   const cont = document.getElementById("contenido");
 
   const festivo = festivos.find(f => f.id === festivoActual);
@@ -238,7 +318,7 @@ function renderContenido() {
 
     </div>
   `).join("");
-}
+}*/
 
 /* ================= ACORDEON ================= */
 function toggleItem(index) {
