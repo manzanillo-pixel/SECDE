@@ -7,6 +7,7 @@ let imagenesHome = [];
 let intervalo;
 let festivoActual = null;
 let currentTab = "estudios";
+let currentSearch = "";
 
 // Detectar si estamos en GitHub Pages o desarrollo local
 const isGitHubPages = window.location.hostname.includes("github.io");
@@ -177,6 +178,15 @@ function renderDetalle(id) {
 
     ${renderNav("festivos")}
   `;
+
+    const searchInput = document.getElementById("search");
+    if (searchInput) {
+      searchInput.value = currentSearch;
+      searchInput.addEventListener("input", e => {
+        currentSearch = e.target.value.toLowerCase();
+        renderContenido();
+      });
+    }
 
   renderContenido();
 }
