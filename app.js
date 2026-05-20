@@ -62,7 +62,7 @@ function renderHome() {
       <p>Software Educativo Cristiano para Dias Especiales</p>
     </div>
     <div class="carousel">
-      <img id="slide">
+      <img id="slide" crossorigin="anonymous">
     </div>
     ${renderNav("home")}
   `;
@@ -129,7 +129,7 @@ function renderCards(lista) {
 
   cont.innerHTML = lista.map(f => `
     <div class="card" onclick="navigate('detalle','${f.id}')">
-      <img src="${f.imagen || 'img/default.jpg'}">
+      <img src="${f.imagen || 'img/default.jpg'}" crossorigin="anonymous">
       <div class="card-content">
         <h3>${f.nombre}</h3>
         <p>${f.descripcion || ""}</p>
@@ -294,7 +294,7 @@ async function renderAbout() {
 app.innerHTML = `
   <section class="about-section">
     ${data.images && data.images.length > 0 
-      ? `<img src="${data.images[0]}" alt="header" class="about-header-img">` 
+      ? `<img src="${data.images[0]}" alt="header" class="about-header-img" crossorigin="anonymous">` 
       : ''}
     <div class="about-container">
       <h2>${data.title || "Sobre SECDE"}</h2>
@@ -476,7 +476,7 @@ function renderPromesas() {
         <div class="card">
 
           ${p.imagen ? `
-            <img src="${p.imagen}" alt="Promesa">
+            <img src="${p.imagen}" alt="Promesa" crossorigin="anonymous">
           ` : ""}
 
           <div class="card-content">
@@ -726,6 +726,7 @@ function renderPensamientos() {
             <img 
               src="${p.imagen}" 
               style="width:100%; height:100%; object-fit:cover;"
+              crossorigin="anonymous"
             >
           ` : ""}
 

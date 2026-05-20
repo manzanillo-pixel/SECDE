@@ -189,7 +189,7 @@ function generarListaFestivos() {
       <div style="flex: 1;">
         <strong>${f.nombre}</strong> (${f.id})
         <p>${f.descripcion}</p>
-        <img src="${f.imagen}" style="max-width: 100px; border-radius: 5px;">
+        <img src="${f.imagen}" style="max-width: 100px; border-radius: 5px;" crossorigin="anonymous">
       </div>
       <div style="display: flex; gap: 5px; flex-direction: column;">
         <button onclick="editarFestivo(${i})" class="btn-warning">✏️ Editar Festivo</button>
@@ -277,9 +277,9 @@ function generarListaPromesas() {
   return promesas.map((p, i) => `
     <div class="item">
       <div style="flex: 1;">
-        ${p.imagen ? `<img src="${p.imagen}" style="max-width: 100px; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;">` : ""}
+        ${p.imagen ? `<img src="${p.imagen}" style="max-width: 100px; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;" crossorigin="anonymous">` : ""}
         <div style="color: #667eea; font-weight: bold; margin-bottom: 5px; font-size: 12px;">${p.categoria || "Promesa"}</div>
-        <p style="margin: 5px 0; font-style: italic;\"${p.texto}\"</p>
+        <p style="margin: 5px 0; font-style: italic;">"${p.texto}"</p>
         <div style="color: #999; font-size: 12px; margin-top: 5px;">${p.referencia || ""}</div>
       </div>
       <div style="display: flex; gap: 5px; flex-direction: column;">
@@ -296,7 +296,7 @@ function generarListaPensamientos() {
   return pensamientos.map((p, i) => `
     <div class="item">
       <div style="flex: 1;">
-        ${p.imagen ? `<img src="${p.imagen}" style="max-width: 80px; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;">` : ""}
+        ${p.imagen ? `<img src="${p.imagen}" style="max-width: 80px; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px;" crossorigin="anonymous">` : ""}
         <p style="margin: 5px 0; font-style: italic; font-size: 14px;">"${p.texto}"</p>
         ${p.autor ? `<div style="color: #667eea; font-weight: bold; margin-top: 5px; font-size: 12px;">— ${p.autor}</div>` : ""}
       </div>
@@ -313,7 +313,7 @@ function generarListaImagenes() {
   
   return homeImages.map((img, i) => `
     <div class="item">
-      <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;">
+      <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" crossorigin="anonymous">
       <br>
       <small>${img}</small>
       <button onclick="eliminarImagen(${i})" class="btn-danger">🗑 Eliminar</button>
@@ -473,7 +473,7 @@ function generarListaImagenesAbout() {
   if (!aboutData.images || aboutData.images.length === 0) return "<p>No hay imágenes en About aún.</p>";
   return aboutData.images.map((img, i) => `
     <div class="item">
-      <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;">
+      <img src="${img}" style="max-width: 150px; max-height: 150px; border-radius: 5px;" crossorigin="anonymous">
       <br>
       <small>${img}</small>
       <button onclick="eliminarImagenAbout(${i})" class="btn-danger">🗑 Eliminar</button>
@@ -842,7 +842,7 @@ function editarFestivo(festivoIndex) {
       <input type="text" id="edit-fest-imagen" value="${festivo.imagen}" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
       
       <div style="margin: 20px 0;">
-        <img src="${festivo.imagen}" style="max-width: 150px; border-radius: 5px; display: block; margin-bottom: 10px;">
+        <img src="${festivo.imagen}" style="max-width: 150px; border-radius: 5px; display: block; margin-bottom: 10px;" crossorigin="anonymous">
       </div>
       
       <div style="display: flex; gap: 10px;">
@@ -1006,7 +1006,7 @@ function editarPensamiento(index) {
       <label>URL de Imagen (opcional):</label>
       <input type="text" id="edit-pens-imagen" value="${pensamiento.imagen || ""}" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
       
-      ${pensamiento.imagen ? `<div style="margin-bottom: 10px;"><img src="${pensamiento.imagen}" style="max-width: 150px; border-radius: 5px;"></div>` : ""}
+${pensamiento.imagen ? `<div style="margin-bottom: 10px;"><img src="${pensamiento.imagen}" style="max-width: 150px; border-radius: 5px;" crossorigin="anonymous"></div>` : ""}
       
       <div style="display: flex; gap: 10px;">
         <button onclick="guardarEditPensamiento(${index})" class="btn-success" style="flex: 1;">✅ Guardar Cambios</button>
