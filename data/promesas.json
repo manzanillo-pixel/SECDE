@@ -1,3 +1,10 @@
 {
-  "promesas": []
+  "promesas": [
+    {
+      "categoria": "Salvacion",
+      "texto": "«Porque por gracia ustedes han sido salvados mediante la fe; esto no procede de ustedes, sino que es el regalo de Dios, no por obras, para que nadie se jacte.»",
+      "referencia": "— Efesios 2:8-9",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHvTLvRJynAcL_j_wxf9PpXe9sTTW7ZfeZyQ&s"
+    }
+  ]
 }
