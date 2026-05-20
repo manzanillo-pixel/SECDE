@@ -1,21 +1,3 @@
 {
-  "festivos": [
-    {
-      "id": "H",
-      "nombre": "Hhhhhh",
-      "descripcion": "Iiiiiiii",
-      "imagen": "https://pin.it/5dFDUHctn",
-      "contenido": {
-        "estudios": [],
-        "predicacion": [],
-        "canciones": [],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
-    }
-  ]
+  "festivos": []
 }
