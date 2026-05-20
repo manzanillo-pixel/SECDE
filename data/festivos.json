@@ -6,7 +6,12 @@
       "descripcion": "La Navidad cristiana es la celebración anual del nacimiento de Jesucristo, considerado el Hijo de Dios y Salvador de la humanidad. Se conmemora principalmente el 25 de diciembre, centrando la festividad en el amor, la esperanza y el mensaje de salvación, más allá de su origen histórico",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-B63ctNSGRMgTLHfnZUjIxFWiLjJBo9wYRA&s",
       "contenido": {
-        "estudios": [],
+        "estudios": [
+          {
+            "titulo": "estudio 1",
+            "texto": "retrtert"
+          }
+        ],
         "predicacion": [],
         "canciones": [],
         "cantos": [],
