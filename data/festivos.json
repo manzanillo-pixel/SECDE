@@ -1,44 +1,10 @@
 {
   "festivos": [
     {
-      "id": "navidad",
-      "nombre": "Navidad",
-      "descripcion": "Mes de celebración del nacimiento de Cristo",
-      "imagen": "https://www.google.com/search?client=ms-android-mpcs-us-revc&hs=BzY&sca_esv=73ef07b7d3365f29&sxsrf=ANbL-n5QPUPqkZAOEJ-AqerIy4EnNU6aRg:1778884616241&udm=2&fbs=ADc_l-bpk8W4E-qsVlOvbGJcDwpn60DczFdcvPnuv8WQohHLTaf9fS4tJ71bi2aHS-Pmeg3gf3Rx3g7wPLd9qB5u5EuZgnwrKvYM0f5ATETxEVoMN8UUd4gxuut_6yqaZqOuCGDlC6g27FDoHmqFAeHwXyNohgWoWWAm_8ydz-d4xp_9B6PuCXKhqopTt7hSdS-ne_TIgHrrne0V95PJONG0evPeupRQxA&q=navidad+Cristiana+imagen&sa=X&ved=2ahUKEwjL35bNrbyUAxUU5MkDHRU3CMQQtKgLegQIERAB#sv=CAMSVxoyKhBlLWlDX2FwVDQ1SzRGR01NMg5pQ19hcFQ0NUs0RkdNTToOM2EtZ2hZSjlnRGwtYk0gBCoXCgFzEhBlLWlDX2FwVDQ1SzRGR01NGAEwAUoECAEQAhgHIJW7tcUMSggQAhgBIAIoAQ",
-      "contenido": {
-        "estudios": [],
-        "predicacion": [],
-        "canciones": [],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
-    },
-    {
-      "id": "Madres",
-      "nombre": "Dia de las madres",
-      "descripcion": "Jsdjdjdjdjdjdhdhdh",
-      "imagen": "https://share.google/8ChljbqMmAO67GVNE",
-      "contenido": {
-        "estudios": [],
-        "predicacion": [],
-        "canciones": [],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
-    },
-    {
-      "id": "navidad ",
-      "nombre": "Navidad ",
-      "descripcion": "Chbfhj",
-      "imagen": "https://pin.it/2GP1KqL8S",
+      "id": "sfgrfgdfg",
+      "nombre": "dfgdfgdfg",
+      "descripcion": "fdgdfgfdg",
+      "imagen": "img/default.jpg",
       "contenido": {
         "estudios": [],
         "predicacion": [],
