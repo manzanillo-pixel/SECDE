@@ -1,3 +1,14 @@
 {
-  "pensamientos": []
+  "pensamientos": [
+    {
+      "texto": "\"Creo en el cristianismo así como creo que el sol ha salido. No solo porque lo veo, sino porque gracias a él puedo ver todo lo demás.\"",
+      "autor": "C.S. Lewis",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjv0pw14mzp4VHbaJffhHBap-ByU4w-CgPUA&s"
+    },
+    {
+      "texto": "\"Ama y haz lo que quieras. Si callas, callarás con amor; si gritas, gritarás con amor; si corriges, corregirás con amor; si perdonas, perdonarás con amor.\"",
+      "autor": "San Agustín de Hipona",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHO8ItMfCrgwE23ApCvDytSC3oKJbeECr3Tw&s"
+    }
+  ]
 }
