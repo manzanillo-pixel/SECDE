@@ -25,6 +25,32 @@
         "poesias": [],
         "programas": []
       }
+    },
+    {
+      "id": "madres",
+      "nombre": "Dia de las Madres",
+      "descripcion": "El Día de la Madre es una festividad global que honra la maternidad. Su fecha exacta varía según el país",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT66b9atO1_uucFDZHKPefUzCRPGIvvLYRT0A&s",
+      "contenido": {
+        "estudios": [
+          {
+            "titulo": "madre 1",
+            "texto": "wwwwwwwwwwwwwwwwwwwwww"
+          },
+          {
+            "titulo": "madre 2",
+            "texto": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+          }
+        ],
+        "predicacion": [],
+        "canciones": [],
+        "cantos": [],
+        "dramas": [],
+        "himnos": [],
+        "lecturas": [],
+        "poesias": [],
+        "programas": []
+      }
     }
   ]
 }
