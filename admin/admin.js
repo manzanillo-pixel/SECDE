@@ -57,7 +57,7 @@ function login() {
   } else {
     console.error("❌ Contraseña incorrecta");
     const debugMsg = document.getElementById("debug-msg");
-    debugMsg.textContent = `❌ Contraseña incorrecta. Esperada: "${correctPassword}", Ingresada: "${pass}"`;
+    debugMsg.textContent = `❌ Verifica tu contraseña. Ingresaste: "${pass}"`;
     debugMsg.style.display = "block";
     alert("❌ Contraseña incorrecta");
     passInput.value = "";
@@ -784,7 +784,7 @@ function guardarImagenes() {
 // ===== LOGOUT =====
 function logout() {
   if (confirm("¿Cerrar sesión?")) {
-    document.getElementById("panel").style.display = "none";
+    document.getElementById("festivos").style.display = "none";
     document.getElementById("loginBox").style.display = "block";
     document.getElementById("pass").value = "";
   }
