@@ -92,9 +92,9 @@
       }
     },
     {
-      "id": "Prueba móvil ",
-      "nombre": "Prueba móvil ",
-      "descripcion": "Desde el celular ",
+      "id": "Prueba móvil",
+      "nombre": "Prueba móvil",
+      "descripcion": "Desde el celular Despues de commit",
       "imagen": "https://pin.it/5dFDUHctn",
       "contenido": {
         "estudios": [],
