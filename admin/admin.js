@@ -136,11 +136,16 @@ function generarFormularioFestivo() {
   return `
     <div class="form-section">
       <h3>Agregar Festivo</h3>
-      <input type="text" id="fest-id" placeholder="ID (ej: navidad)" maxlength="20">
-      <input type="text" id="fest-nombre" placeholder="Nombre">
-      <input type="text" id="fest-desc" placeholder="Descripción">
-      <input type="text" id="fest-imagen" placeholder="URL de imagen">
-      <button onclick="agregarFestivo()" class="btn-success">➕ Agregar Festivo</button>
+      <input type="text" id="fest-id" placeholder="ID (ej: navidad)" maxlength="20" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <input type="text" id="fest-nombre" placeholder="Nombre" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <input type="text" id="fest-desc" placeholder="Descripción" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <label style="color: #667eea; font-weight: bold; display: block; margin-bottom: 5px; margin-top: 10px;">URL de imagen (debe ser HTTPS):</label>
+      <input type="url" id="fest-imagen" placeholder="https://ejemplo.com/imagen.jpg" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;" onchange="mostrarPreviewFestivo()" onkeyup="mostrarPreviewFestivo()">
+      <div id="preview-festivo" style="margin-bottom: 15px; display: none; text-align: center; background: #0a0a0a; padding: 10px; border-radius: 5px;">
+        <p style="font-size: 12px; color: #999; margin-bottom: 10px;">Preview:</p>
+        <img id="img-preview-festivo" style="max-width: 100%; max-height: 200px; border-radius: 5px; border: 2px solid #667eea;">
+      </div>
+      <button onclick="agregarFestivo()" class="btn-success" style="width: 100%; padding: 12px; font-size: 16px;">➕ Agregar Festivo</button>
     </div>
   `;
 }
@@ -149,11 +154,16 @@ function generarFormularioPromesa() {
   return `
     <div class="form-section">
       <h3>Agregar Promesa Bíblica</h3>
-      <input type="text" id="prom-categoria" placeholder="Categoría (ej: Salvación, Paz, etc.)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
-      <textarea id="prom-texto" placeholder="Texto de la promesa" rows="3" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: Arial;"></textarea>
-      <input type="text" id="prom-referencia" placeholder="Referencia (ej: Juan 3:16)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
-      <input type="text" id="prom-imagen" placeholder="URL de imagen (opcional)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
-      <button onclick="agregarPromesa()" class="btn-success">➕ Agregar Promesa</button>
+      <input type="text" id="prom-categoria" placeholder="Categoría (ej: Salvación, Paz, etc.)" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <textarea id="prom-texto" placeholder="Texto de la promesa" rows="3" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: Arial; font-size: 16px;"></textarea>
+      <input type="text" id="prom-referencia" placeholder="Referencia (ej: Juan 3:16)" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <label style="color: #667eea; font-weight: bold; display: block; margin-bottom: 5px; margin-top: 10px;">URL de imagen (opcional, debe ser HTTPS):</label>
+      <input type="url" id="prom-imagen" placeholder="https://ejemplo.com/imagen.jpg" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;" onchange="mostrarPreviewPromesa()" onkeyup="mostrarPreviewPromesa()">
+      <div id="preview-promesa" style="margin-bottom: 15px; display: none; text-align: center; background: #0a0a0a; padding: 10px; border-radius: 5px;">
+        <p style="font-size: 12px; color: #999; margin-bottom: 10px;">Preview:</p>
+        <img id="img-preview-promesa" style="max-width: 100%; max-height: 200px; border-radius: 5px; border: 2px solid #667eea;">
+      </div>
+      <button onclick="agregarPromesa()" class="btn-success" style="width: 100%; padding: 12px; font-size: 16px;">➕ Agregar Promesa</button>
     </div>
   `;
 }
@@ -162,10 +172,15 @@ function generarFormularioPensamiento() {
   return `
     <div class="form-section">
       <h3>Agregar Pensamiento</h3>
-      <textarea id="pens-texto" placeholder="Pensamiento cristiano" rows="3" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: Arial;"></textarea>
-      <input type="text" id="pens-autor" placeholder="Autor (opcional)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
-      <input type="text" id="pens-imagen" placeholder="URL de imagen (opcional)" style="width: 100%; padding: 8px; margin-bottom: 8px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px;">
-      <button onclick="agregarPensamiento()" class="btn-success">➕ Agregar Pensamiento</button>
+      <textarea id="pens-texto" placeholder="Pensamiento cristiano" rows="3" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-family: Arial; font-size: 16px;"></textarea>
+      <input type="text" id="pens-autor" placeholder="Autor (opcional)" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;">
+      <label style="color: #667eea; font-weight: bold; display: block; margin-bottom: 5px; margin-top: 10px;">URL de imagen (opcional, debe ser HTTPS):</label>
+      <input type="url" id="pens-imagen" placeholder="https://ejemplo.com/imagen.jpg" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;" onchange="mostrarPreviewPensamiento()" onkeyup="mostrarPreviewPensamiento()">
+      <div id="preview-pensamiento" style="margin-bottom: 15px; display: none; text-align: center; background: #0a0a0a; padding: 10px; border-radius: 5px;">
+        <p style="font-size: 12px; color: #999; margin-bottom: 10px;">Preview:</p>
+        <img id="img-preview-pensamiento" style="max-width: 100%; max-height: 200px; border-radius: 5px; border: 2px solid #667eea;">
+      </div>
+      <button onclick="agregarPensamiento()" class="btn-success" style="width: 100%; padding: 12px; font-size: 16px;">➕ Agregar Pensamiento</button>
     </div>
   `;
 }
@@ -174,8 +189,13 @@ function generarFormularioImagen() {
   return `
     <div class="form-section">
       <h3>Agregar Imagen Home</h3>
-      <input type="text" id="img-url" placeholder="URL de la imagen">
-      <button onclick="agregarImagen()" class="btn-success">➕ Agregar Imagen</button>
+      <label style="color: #667eea; font-weight: bold; display: block; margin-bottom: 5px;">URL de la imagen (debe ser HTTPS):</label>
+      <input type="url" id="img-url" placeholder="https://ejemplo.com/imagen.jpg" style="width: 100%; padding: 10px; margin-bottom: 10px; background: #1a1a1a; border: 1px solid #444; color: white; border-radius: 5px; font-size: 16px;" onchange="mostrarPreviewImagen()" onkeyup="mostrarPreviewImagen()">
+      <div id="preview-imagen" style="margin-bottom: 15px; display: none; text-align: center; background: #0a0a0a; padding: 10px; border-radius: 5px;">
+        <p style="font-size: 12px; color: #999; margin-bottom: 10px;">Preview:</p>
+        <img id="img-preview-imagen" style="max-width: 100%; max-height: 200px; border-radius: 5px; border: 2px solid #667eea;">
+      </div>
+      <button onclick="agregarImagen()" class="btn-success" style="width: 100%; padding: 12px; font-size: 16px;">➕ Agregar Imagen</button>
     </div>
   `;
 }
@@ -322,14 +342,88 @@ function generarListaImagenes() {
 }
 
 // ===== AGREGAR ITEMS =====
+// ===== PREVIEW DE IMAGEN PARA PROMESA =====
+function mostrarPreviewPromesa() {
+  const url = document.getElementById("prom-imagen").value.trim();
+  const previewDiv = document.getElementById("preview-promesa");
+  const previewImg = document.getElementById("img-preview-promesa");
+  
+  if (!url) {
+    previewDiv.style.display = "none";
+    return;
+  }
+  
+  previewImg.onload = function() {
+    previewDiv.style.display = "block";
+  };
+  
+  previewImg.onerror = function() {
+    console.error("Error cargando imagen:", url);
+    previewDiv.style.display = "none";
+  };
+  
+  previewImg.src = url;
+}
+
+// ===== PREVIEW DE IMAGEN PARA PENSAMIENTO =====
+function mostrarPreviewPensamiento() {
+  const url = document.getElementById("pens-imagen").value.trim();
+  const previewDiv = document.getElementById("preview-pensamiento");
+  const previewImg = document.getElementById("img-preview-pensamiento");
+  
+  if (!url) {
+    previewDiv.style.display = "none";
+    return;
+  }
+  
+  previewImg.onload = function() {
+    previewDiv.style.display = "block";
+  };
+  
+  previewImg.onerror = function() {
+    console.error("Error cargando imagen:", url);
+    previewDiv.style.display = "none";
+  };
+  
+  previewImg.src = url;
+}
+
+// ===== PREVIEW DE IMAGEN PARA FESTIVO =====
+function mostrarPreviewFestivo() {
+  const url = document.getElementById("fest-imagen").value.trim();
+  const previewDiv = document.getElementById("preview-festivo");
+  const previewImg = document.getElementById("img-preview-festivo");
+  
+  if (!url) {
+    previewDiv.style.display = "none";
+    return;
+  }
+  
+  previewImg.onload = function() {
+    previewDiv.style.display = "block";
+  };
+  
+  previewImg.onerror = function() {
+    console.error("Error cargando imagen:", url);
+    previewDiv.style.display = "none";
+  };
+  
+  previewImg.src = url;
+}
+
 function agregarFestivo() {
-  const id = document.getElementById("fest-id").value;
-  const nombre = document.getElementById("fest-nombre").value;
-  const desc = document.getElementById("fest-desc").value;
-  const imagen = document.getElementById("fest-imagen").value;
+  const id = document.getElementById("fest-id").value.trim();
+  const nombre = document.getElementById("fest-nombre").value.trim();
+  const desc = document.getElementById("fest-desc").value.trim();
+  const imagen = document.getElementById("fest-imagen").value.trim();
   
   if (!id || !nombre) {
     alert("⚠️ Completa ID y Nombre");
+    return;
+  }
+  
+  if (imagen && !imagen.match(/^https?:\/\/.+/)) {
+    alert("⚠️ La URL de imagen debe comenzar con https://");
     return;
   }
   
@@ -355,6 +449,7 @@ function agregarFestivo() {
   document.getElementById("fest-nombre").value = "";
   document.getElementById("fest-desc").value = "";
   document.getElementById("fest-imagen").value = "";
+  document.getElementById("preview-festivo").style.display = "none";
   
   guardarFestivos();
   mostrarSeccion("festivos");
@@ -371,12 +466,18 @@ function agregarPromesa() {
     return;
   }
   
+  if (imagen && !imagen.match(/^https?:\/\/.+/)) {
+    alert("⚠️ La URL de imagen debe comenzar con https://");
+    return;
+  }
+  
   promesas.push({ categoria, texto, referencia, imagen });
   
   document.getElementById("prom-categoria").value = "";
   document.getElementById("prom-texto").value = "";
   document.getElementById("prom-referencia").value = "";
   document.getElementById("prom-imagen").value = "";
+  document.getElementById("preview-promesa").style.display = "none";
   
   guardarPromesas();
   mostrarSeccion("promesas");
@@ -393,27 +494,62 @@ function agregarPensamiento() {
     return;
   }
   
+  if (imagen && !imagen.match(/^https?:\/\/.+/)) {
+    alert("⚠️ La URL de imagen debe comenzar con https://");
+    return;
+  }
+  
   pensamientos.push({ texto, autor, imagen });
   
   document.getElementById("pens-texto").value = "";
   document.getElementById("pens-autor").value = "";
   document.getElementById("pens-imagen").value = "";
+  document.getElementById("preview-pensamiento").style.display = "none";
   
   guardarPensamientos();
   mostrarSeccion("pensamientos");
 }
 
+// ===== PREVIEW DE IMAGEN HOME =====
+function mostrarPreviewImagen() {
+  const url = document.getElementById("img-url").value.trim();
+  const previewDiv = document.getElementById("preview-imagen");
+  const previewImg = document.getElementById("img-preview-imagen");
+  
+  if (!url) {
+    previewDiv.style.display = "none";
+    return;
+  }
+  
+  previewImg.onload = function() {
+    previewDiv.style.display = "block";
+  };
+  
+  previewImg.onerror = function() {
+    console.error("Error cargando imagen:", url);
+    previewDiv.style.display = "none";
+  };
+  
+  previewImg.src = url;
+}
+
 function agregarImagen() {
-  const url = document.getElementById("img-url").value;
+  const url = document.getElementById("img-url").value.trim();
   
   if (!url) {
     alert("⚠️ Ingresa una URL de imagen");
     return;
   }
   
+  if (!url.match(/^https?:\/\/.+/)) {
+    alert("⚠️ La URL de imagen debe comenzar con https://");
+    return;
+  }
+  
   homeImages.push(url);
   
   document.getElementById("img-url").value = "";
+  document.getElementById("preview-imagen").style.display = "none";
   
   guardarImagenes();
   mostrarSeccion("imagenes");
