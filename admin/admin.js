@@ -511,6 +511,75 @@ function eliminarImagenAbout(i) {
   }
 }
 
+// ===== MOSTRAR ERROR CON OPCIÓN DE ACTUALIZAR TOKEN =====
+function mostrarErrorToken(archivo, errorMessage, datosParaGuardar) {
+  const container = document.getElementById("errorContainer");
+  
+  const html = `
+    <span class="close-error" onclick="cerrarError()">✕</span>
+    <h3>❌ Error guardando ${archivo}</h3>
+    <p><strong>Verifica:</strong></p>
+    <ol style="margin-left: 20px; margin-bottom: 15px;">
+      <li>Tu token de GitHub es válido</li>
+      <li>Tiene permisos de 'repo'</li>
+    </ol>
+    <div class="error-message">
+      <strong>Mensaje de error:</strong><br>
+      ${errorMessage}
+    </div>
+    
+    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 5px; margin-bottom: 15px;">
+      <p><strong>Tu token ha expirado o es inválido.</strong> Ingresa un nuevo token de GitHub:</p>
+      <div class="token-input-group">
+        <input type="password" id="newTokenInput" placeholder="Nuevo token de GitHub (https://github.com/settings/tokens)" />
+        <button onclick="actualizarTokenYReintentar('${archivo}')">🔐 Actualizar Token</button>
+      </div>
+      <small style="color: #fff; opacity: 0.8; margin-top: 10px; display: block;">El token se guardará localmente en tu navegador</small>
+    </div>
+    
+    <button onclick="cerrarError()" style="background: rgba(255,255,255,0.2); border: 1px solid white; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer;">Cerrar</button>
+  `;
+  
+  container.innerHTML = html;
+  container.classList.add("show");
+  container.style.display = "block";
+  
+  // Guardar datos temporales por si el usuario quiere reintentar
+  window.datosParaReintentarGuardar = { archivo, datos: datosParaGuardar };
+  window.rutaParaReintentar = null;
+}
+
+// ===== CERRAR MENSAJEDE ERROR =====
+function cerrarError() {
+  const container = document.getElementById("errorContainer");
+  container.classList.remove("show");
+  container.style.display = "none";
+  container.innerHTML = "";
+}
+
+// ===== ACTUALIZAR TOKEN Y REINTENTAR =====
+function actualizarTokenYReintentar(archivo) {
+  const newToken = document.getElementById("newTokenInput").value.trim();
+  
+  if (!newToken) {
+    alert("⚠️ Por favor ingresa un token válido");
+    return;
+  }
+  
+  // Guardar nuevo token
+  GITHUB_TOKEN = newToken;
+  localStorage.setItem("github_token", GITHUB_TOKEN);
+  
+  console.log("✅ Token actualizado. Reintentando guardar...");
+  
+  // Reintentar guardar con el nuevo token
+  if (window.datosParaReintentarGuardar) {
+    const { archivo: arch, datos } = window.datosParaReintentarGuardar;
+    cerrarError();
+    guardarDatos(arch, datos);
+  }
+}
+
 // ===== GUARDAR EN GITHUB =====
 async function guardarDatos(archivo, datos) {
   try {
@@ -553,9 +622,10 @@ async function guardarDatos(archivo, datos) {
     
     alert(`✅ ${archivo} guardado correctamente en GitHub`);
     console.log("✅ Datos guardados:", datos);
+    cerrarError(); // Cerrar error si estaba abierto
   } catch (error) {
     console.error("Error:", error);
-    alert(`❌ Error guardando ${archivo}:\n${error.message}\n\nVerifica:\n1. Tu token de GitHub es válido\n2. Tiene permisos de 'repo'`);
+    mostrarErrorToken(archivo, error.message, datos);
   }
 }
 
