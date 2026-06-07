@@ -12,7 +12,12 @@
         "cantos": [],
         "dramas": [],
         "himnos": [],
-        "lecturas": [],
+        "lecturas": [
+          {
+            "titulo": "La Navidad Cristiana",
+            "texto": "La navidad es una de las celebraciones más importantes en todo el mundo. Es un hito importante para nosotros, el final de un año, tiempo de regalos, festejos, reuniones familiares y –para los cristianos practicantes- una emotiva fiesta religiosa."
+          }
+        ],
         "poesias": [],
         "programas": []
       }
