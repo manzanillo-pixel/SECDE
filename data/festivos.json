@@ -1,32 +1,6 @@
 {
   "festivos": [
     {
-      "id": "nav",
-      "nombre": "Navidad",
-      "descripcion": "La Navidad cristiana es la celebración anual del nacimiento de Jesucristo, considerado el Hijo de Dios y Salvador de la humanidad. Se conmemora principalmente el 25 de diciembre, centrando la festividad en el amor, la esperanza y el mensaje de salvación, más allá de su origen histórico",
-      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-B63ctNSGRMgTLHfnZUjIxFWiLjJBo9wYRA&s",
-      "contenido": {
-        "estudios": [
-          {
-            "titulo": "estudio 1",
-            "texto": "retrtert"
-          },
-          {
-            "titulo": "estudio 2",
-            "texto": "werfgdrfgd"
-          }
-        ],
-        "predicacion": [],
-        "canciones": [],
-        "cantos": [],
-        "dramas": [],
-        "himnos": [],
-        "lecturas": [],
-        "poesias": [],
-        "programas": []
-      }
-    },
-    {
       "id": "madres",
       "nombre": "Dia de las Madres",
       "descripcion": "El Día de la Madre es una festividad global que honra la maternidad. Su fecha exacta varía según el país",
